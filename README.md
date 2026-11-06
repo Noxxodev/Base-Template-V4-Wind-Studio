@@ -1,4 +1,4 @@
-# Base Template V4 — Wind Studio (FR)
+# Base Template V4 - Wind Studio (FR)
 
 <p align="center">
   <a href="README.md"><img src="https://img.shields.io/badge/Langue-Français-blue?style=for-the-badge" alt="Français"></a>
