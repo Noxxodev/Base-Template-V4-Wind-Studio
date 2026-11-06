@@ -2,7 +2,7 @@ Config = {}
 
 local txAdminLocale = GetConvar("txAdmin-locale", "fr")
 local esxLocale = GetConvar("esx:locale", "invalid")
-Config.Locale = "fr" --[[(esxLocale ~= "invalid") and esxLocale or (txAdminLocale ~= "custom" and txAdminLocale) or "fr"]]
+Config.Locale = (esxLocale ~= "invalid") and esxLocale or "fr" -- Langue : changez "setr esx:locale" dans server.cfg
 
 -- For ox inventory, this will automatically be adjusted, do not change! For other inventories, leave as false unless specifically instructed to change.
 Config.CustomInventory = false

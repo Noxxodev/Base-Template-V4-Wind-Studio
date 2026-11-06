@@ -1,5 +1,5 @@
 return {
-	--[[{
+	{
 		coords = vec3(452.3, -991.4, 30.7),
 		target = {
 			loc = vec3(451.25, -994.28, 30.69),
@@ -35,5 +35,5 @@ return {
 		slots = 70,
 		weight = 70000,
 		groups = {['ambulance'] = 0}
-	},]]
+	},
 }

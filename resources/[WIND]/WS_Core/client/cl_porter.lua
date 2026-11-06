@@ -70,10 +70,10 @@ RegisterCommand("porter", function(source, args)
                 chargerAnimation(carry.personnePorteuse.animDict)
                 carry.type = "porter"
             else
-                afficherNotificationNative("Personne à proximité à porter !")
+                afficherNotificationNative(_T('nobody_to_carry'))
             end
         else
-            afficherNotificationNative("Personne à proximité à porter !")
+            afficherNotificationNative(_T('nobody_to_carry'))
         end
     else
         carry.EnCours = false

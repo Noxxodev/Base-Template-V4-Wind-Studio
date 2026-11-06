@@ -1,8 +1,8 @@
 ESX = exports["es_extended"]:getSharedObject()
 
-RegisterKeyMapping('menuadmin', "Ouvrir le menu admin", 'keyboard', 'F10')
+RegisterKeyMapping('menuadmin', _T('keymapping_menu'), 'keyboard', 'F10')
 
-RegisterKeyMapping('adminnoclip', "noclip", 'keyboard', 'F9')
+RegisterKeyMapping('adminnoclip', _T('keymapping_noclip'), 'keyboard', 'F9')
 
 RegisterCommand('menuadmin', function()
     staff_menu()
@@ -17,18 +17,18 @@ function staff_menu()
         if access then
             lib.registerMenu({
                 id = 'menu_staff',
-                title = "Menu Staff",
+                title = _T('menu_title'),
                 position = positionmenu,
                 options = {
-                    {label = "Me heal", icon = "heart-pulse", iconColor = "#ef4444"},
-                    {label = "Me revive", icon = "user-plus", iconColor = "#22c55e"},
-                    {label = "Ce TP au marker", icon = "location-arrow", iconColor = "#3b82f6"},
-                    {label = "Ce TP sur un joueur", icon = "person-walking", iconColor = "#3b82f6"},
-                    {label = "TP un joueur sur moi", icon = "people-arrows", iconColor = "#3b82f6"},
-                    {label = "Faire spawn une voiture", icon = "car", iconColor = "#f59e0b"},
-                    {label = "Réparer", icon = "screwdriver-wrench", iconColor = "#22c55e"},
-                    {label = "Nettoyer", icon = "spray-can-sparkles", iconColor = "#60a5fa"},
-                    {label = "Supprimer", icon = "trash", iconColor = "#dc2626"},
+                    {label = _T('heal'), icon = "heart-pulse", iconColor = "#ef4444"},
+                    {label = _T('revive'), icon = "user-plus", iconColor = "#22c55e"},
+                    {label = _T('tp_marker'), icon = "location-arrow", iconColor = "#3b82f6"},
+                    {label = _T('tp_to_player'), icon = "person-walking", iconColor = "#3b82f6"},
+                    {label = _T('bring_player'), icon = "people-arrows", iconColor = "#3b82f6"},
+                    {label = _T('spawn_vehicle'), icon = "car", iconColor = "#f59e0b"},
+                    {label = _T('repair'), icon = "screwdriver-wrench", iconColor = "#22c55e"},
+                    {label = _T('clean'), icon = "spray-can-sparkles", iconColor = "#60a5fa"},
+                    {label = _T('delete'), icon = "trash", iconColor = "#dc2626"},
                 }
             }, function(selected, scrollIndex, args)
                 if selected == 1 then
@@ -69,31 +69,31 @@ function staff_menu()
                             end
 
                             SetPedCoordsKeepVehicle(playerped, markercoords.x, markercoords.y, zPos)
-                            ESX.ShowNotification("Vous vous êtes bien téléporté à votre marker.", "success")
+                            ESX.ShowNotification(_T('tp_marker_success'), "success")
                         end)
                     else
-                        ESX.ShowNotification("Vous n'avez pas de marker.", "error")
+                        ESX.ShowNotification(_T('no_marker'), "error")
                     end
 
                 elseif selected == 4 then
-                    local input = lib.inputDialog('TP sur un joueur', {
-                        {type = 'number', label = 'ID :'},
+                    local input = lib.inputDialog(_T('input_tp_to_player'), {
+                        {type = 'number', label = _T('input_id')},
                     })
 
                     if not input then return end
                     TriggerServerEvent('WS_Admin:gotoplayer', input[1])
 
                 elseif selected == 5 then
-                    local input = lib.inputDialog('TP un joueur sur moi', {
-                        {type = 'number', label = 'ID :'},
+                    local input = lib.inputDialog(_T('input_bring_player'), {
+                        {type = 'number', label = _T('input_id')},
                     })
 
                     if not input then return end
                     TriggerServerEvent('WS_Admin:bringplayer', input[1])
 
                 elseif selected == 6 then
-                    local input = lib.inputDialog('Spawn véhicule', {
-                        {type = 'input', label = 'Nom :'},
+                    local input = lib.inputDialog(_T('input_spawn_vehicle'), {
+                        {type = 'input', label = _T('input_name')},
                     })
 
                     if not input then return end
@@ -104,9 +104,9 @@ function staff_menu()
 
                     if vehicle and DoesEntityExist(vehicle) then
                         SetVehicleFixed(vehicle)
-                        ESX.ShowNotification("Véhicule réparé.", "success")
+                        ESX.ShowNotification(_T('vehicle_repaired'), "success")
                     else
-                        ESX.ShowNotification("Aucun véhicule.", "error")
+                        ESX.ShowNotification(_T('no_vehicle'), "error")
                     end
 
                 elseif selected == 8 then
@@ -114,26 +114,26 @@ function staff_menu()
 
                     if vehicle and DoesEntityExist(vehicle) then
                         SetVehicleDirtLevel(vehicle, 0.0)
-                        ESX.ShowNotification("Véhicule nettoyé.", "success")
+                        ESX.ShowNotification(_T('vehicle_cleaned'), "success")
                     else
-                        ESX.ShowNotification("Aucun véhicule.", "error")
+                        ESX.ShowNotification(_T('no_vehicle'), "error")
                     end
 
-                elseif selected == 8 then
+                elseif selected == 9 then
                     local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
 
                     if vehicle and DoesEntityExist(vehicle) then
                         DeleteEntity(vehicle)
-                        ESX.ShowNotification("Véhicule supprimé.", "success")
+                        ESX.ShowNotification(_T('vehicle_deleted'), "success")
                     else
-                        ESX.ShowNotification("Aucun véhicule.", "error")
+                        ESX.ShowNotification(_T('no_vehicle'), "error")
                     end
                 end
             end)
 
             lib.showMenu('menu_staff')
         else
-            ESX.ShowNotification("Vous n'avez pas la permission", "error")
+            ESX.ShowNotification(_T('no_permission'), "error")
         end
     end)
 end
@@ -168,10 +168,10 @@ function noclip()
                 SetPedGravity(ped, false)
                 SetEntityVisible(ped, false, false)
 
-                ESX.ShowNotification("Noclip activé", "success")
+                ESX.ShowNotification(_T('noclip_on'), "success")
             end
         else
-            ESX.ShowNotification("Vous n'avez pas la permission", "error")
+            ESX.ShowNotification(_T('no_permission'), "error")
         end
     end)
 end
@@ -180,7 +180,7 @@ function activenoclip(state)
     local ped = PlayerPedId()
 
     if not state then
-        ESX.ShowNotification("Noclip désactivé", "error")
+        ESX.ShowNotification(_T('noclip_off'), "error")
         return
     end
 

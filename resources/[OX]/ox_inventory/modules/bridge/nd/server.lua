@@ -1,6 +1,13 @@
 if not lib.checkDependency('ND_Core', '2.0.0', true) then return end
 
 local Inventory = require 'modules.inventory.server'
+local db = require 'modules.mysql.server'
+
+db.setup({
+	user = { table = 'nd_characters', col = 'charid' },
+	vehicle = { table = 'nd_vehicles', col = 'id' },
+})
+
 NDCore = {}
 
 lib.load('@ND_Core.init')
@@ -48,7 +55,10 @@ AddEventHandler("ND:moneyChange", function(src, account, amount, changeType, rea
     Inventory.SetItem(src, "money", changeType == "set" and amount or changeType == "remove" and item - amount or changeType == "add" and item + amount)
 end)
 
-AddEventHandler("ND:updateCharacter", function(character)
+AddEventHandler("ND:updateCharacter", function(character, updatedData)
+    local validUpdateData = { ["job"] = true, ["groups"] = true, ["jobInfo"] = true }
+    if not validUpdateData[updatedData] then return end
+	
     local inventory = Inventory(character.source)
 	if not inventory then return end
 	inventory.player.groups = reorderGroups(character.groups)

@@ -3,7 +3,7 @@
 -- @version 3.0
 
 -- Pre-load the language
-local lang = Languages[Config.language]
+local lang = Languages[Config.language] or Languages['en']
 
 -- @desc Handle /me command
 local function onMeCommand(source, args)

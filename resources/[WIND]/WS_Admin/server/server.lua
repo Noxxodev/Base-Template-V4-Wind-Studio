@@ -18,9 +18,9 @@ AddEventHandler('WS_Admin:gotoplayer', function(target)
 
     if xPlayer ~= 0 then 
         SetEntityCoords(joueur, targetCoords.x, targetCoords.y, targetCoords.z, false, false, false, true)
-        TriggerClientEvent('esx:showNotification', source, "Vous êtes bien téléporté sur le joueur.", "success")
+        TriggerClientEvent('esx:showNotification', source, _T('tp_to_player_done'), "success")
     else
-        TriggerClientEvent('esx:showNotification', source, "Le joueur n'existe pas.", "error")
+        TriggerClientEvent('esx:showNotification', source, _T('player_not_found'), "error")
     end
 end)
 
@@ -32,9 +32,9 @@ AddEventHandler('WS_Admin:bringplayer', function(target)
 
     if joueur ~= 0 then 
         SetEntityCoords(joueur, targetCoords.x, targetCoords.y, targetCoords.z, false, false, false, true)
-        TriggerClientEvent('esx:showNotification', source, "Vous avez bien téléporté le joueur sur vous.", "success")
+        TriggerClientEvent('esx:showNotification', source, _T('bring_player_done'), "success")
     else
-        TriggerClientEvent('esx:showNotification', source, "Le joueur n'existe pas.", "error")
+        TriggerClientEvent('esx:showNotification', source, _T('player_not_found'), "error")
     end
 end)
 
@@ -48,7 +48,7 @@ AddEventHandler('WS_Admin:spawncar', function(carname)
     local vehicle = CreateVehicle(hash, xPlayercoords.x, xPlayercoords.y, xPlayercoords.z, GetEntityHeading(xPlayer), true, false)
     SetPedIntoVehicle(xPlayer, vehicle, -1)
 
-    TriggerClientEvent('esx:showNotification', source, "Véhicule spawn.", "success")
+    TriggerClientEvent('esx:showNotification', source, _T('vehicle_spawned'), "success")
 end)
 
 ---------------------------------------------------------------------------------------------------------------------

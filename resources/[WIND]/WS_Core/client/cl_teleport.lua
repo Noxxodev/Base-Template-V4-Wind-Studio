@@ -104,7 +104,7 @@ AddEventHandler('WS_pointdeteleportation:pointdetp', function(data)
 
     lib.registerContext({
         id = 'menu_teleportation',
-        title = 'Menu téléportation',
+        title = _T('teleport_menu'),
         options = options
     })
 

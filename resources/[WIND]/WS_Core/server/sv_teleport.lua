@@ -6,9 +6,9 @@ AddEventHandler('WS_pointdeteleportation:teleporation', function(pos, posname)
     local xPlayerID = ESX.GetPlayerFromId(source)
     if xPlayer ~= 0 then 
         SetEntityCoords(xPlayer, pos.x, pos.y, pos.z, false, false, false, true)
-        TriggerClientEvent('esx:showNotification', source, "Vous êtes téléporter : " .. posname)
+        TriggerClientEvent('esx:showNotification', source, _T('teleported_to', posname))
     else
-        TriggerClientEvent('esx:showNotification', source, "Joueur introuvable")
+        TriggerClientEvent('esx:showNotification', source, _T('player_not_found'))
     end
 end)
 

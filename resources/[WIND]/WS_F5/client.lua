@@ -5,24 +5,24 @@ RegisterCommand(Config.Command, function()
     lib.showContext('f5menu')
 end)
 
-RegisterKeyMapping(Config.Command, 'Menu personelle', 'keyboard', Config.Key)
+RegisterKeyMapping(Config.Command, _T('keymapping'), 'keyboard', Config.Key)
 
 
 lib.registerContext({
     id = 'f5menu',
-    title = 'Menu F5',
+    title = _T('menu_title'),
     options = {
         {
-            title = 'Mes documents',
-            description = 'Montrer c\'est document',
+            title = _T('my_documents'),
+            description = _T('my_documents_desc'),
             icon = 'fa-regular fa-id-card',
             onSelect = function()
                 lib.showContext('documentmenu')
             end,
         },
         {
-            title = 'Gestion véhicules',
-            description = 'Gestion véhicules',
+            title = _T('vehicle_management'),
+            description = _T('vehicle_management'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 lib.showContext('voituremenu')
@@ -33,12 +33,12 @@ lib.registerContext({
 
 lib.registerContext({
     id = 'documentmenu',
-    title = 'Menu document',
+    title = _T('document_menu'),
     menu = 'f5menu',
     options = {
         {
-            title = 'Carte d\'identité',
-            description = 'Carte d\'identité',
+            title = _T('id_card'),
+            description = _T('id_card'),
             icon = 'fa-solid fa-address-card',
             onSelect = function()
                 local player, distance = ESX.Game.GetClosestPlayer()
@@ -48,13 +48,13 @@ lib.registerContext({
                     TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
                 else
                     TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
-                    ESX.ShowNotification('Aucun joueur a proximité')
+                    ESX.ShowNotification(_T('no_player_nearby'))
                 end  
             end,
         },
         {
-            title = 'Permis de conduire',
-            description = 'Permis de conduire',
+            title = _T('driver_license'),
+            description = _T('driver_license'),
             icon = 'fa-solid fa-address-card',
             onSelect = function()
                 local player, distance = ESX.Game.GetClosestPlayer()
@@ -64,13 +64,13 @@ lib.registerContext({
                     TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'driver')
                 else
                     TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'driver')
-                    ESX.ShowNotification('Aucun joueur a proximité')
+                    ESX.ShowNotification(_T('no_player_nearby'))
                 end
             end,
         },
         {
-            title = 'Permis port d\'armes',
-            description = 'Permis port d\'armes',
+            title = _T('weapon_license'),
+            description = _T('weapon_license'),
             icon = 'fa-solid fa-address-card',
             onSelect = function()
                 local player, distance = ESX.Game.GetClosestPlayer()
@@ -80,7 +80,7 @@ lib.registerContext({
                     TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'weapon')
                 else
                     TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'weapon')
-                    ESX.ShowNotification('Aucun joueur a proximité')
+                    ESX.ShowNotification(_T('no_player_nearby'))
                 end
             end,
         },
@@ -89,46 +89,46 @@ lib.registerContext({
 
 lib.registerContext({
     id = 'voituremenu',
-    title = 'Menu voiture',
+    title = _T('vehicle_menu'),
     menu = 'f5menu',
     options = {
         {
-            title = 'Baisser les fenêtres',
+            title = _T('windows_down'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 lib.showContext('fenetrevoiturebaisser')
             end,
         },
         {
-            title = 'Monter les fenêtres',
+            title = _T('windows_up'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 lib.showContext('fenetrevoituremonter')
             end,
         },
         {
-            title = 'Ouvrir les portes',
+            title = _T('open_doors'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 lib.showContext('ouvrirporte')
             end,
         },
         {
-            title = 'Fermer les portes',
+            title = _T('close_doors'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 lib.showContext('fermerporte')
             end,
         },
         {
-            title = 'Changer de place',
+            title = _T('change_seat'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 lib.showContext('changerplace')
             end,
         },
         {
-            title = 'Moteur ON / OFF',
+            title = _T('engine_toggle'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
@@ -146,10 +146,10 @@ lib.registerContext({
 
 lib.registerMenu({
     id = 'voituremenu',
-    title = 'Menu voiture',
+    title = _T('vehicle_menu'),
     position = 'top-left',
     options = {
-        {label = 'Moteur ON / OFF', icon = 'fa-solid fa-car', description = 'Moteur ON / OFF'},
+        {label = _T('engine_toggle'), icon = 'fa-solid fa-car', description = _T('engine_toggle')},
     }
 }, function(selected, scrollIndex, args)
     if selected == 6 then
@@ -159,11 +159,11 @@ end)
 
 lib.registerContext({
     id = 'fenetrevoiturebaisser',
-    title = 'Menu fenetre',
+    title = _T('window_menu'),
     menu = 'voituremenu',
     options = {
         {
-            title = 'Avant gauche',
+            title = _T('front_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -173,7 +173,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Avant droite',
+            title = _T('front_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -183,7 +183,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière gauche',
+            title = _T('rear_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -193,7 +193,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière droite',
+            title = _T('rear_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -203,7 +203,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Tout',
+            title = _T('all'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -221,11 +221,11 @@ lib.registerContext({
 
 lib.registerContext({
     id = 'fenetrevoituremonter',
-    title = 'Monter les fenêtres',
+    title = _T('windows_up'),
     menu = 'voituremenu',
     options = {
         {
-            title = 'Avant gauche',
+            title = _T('front_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -235,7 +235,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Avant droite',
+            title = _T('front_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -245,7 +245,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière gauche',
+            title = _T('rear_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -255,7 +255,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière droite',
+            title = _T('rear_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -265,7 +265,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Tout',
+            title = _T('all'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -282,11 +282,11 @@ lib.registerContext({
 
 lib.registerContext({
     id = 'ouvrirporte',
-    title = 'Ouverture porte',
+    title = _T('door_open_menu'),
     menu = 'voituremenu',
     options = {
         {
-            title = 'Avant gauche',
+            title = _T('front_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -296,7 +296,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Avant droite',
+            title = _T('front_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -306,7 +306,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière gauche',
+            title = _T('rear_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -316,7 +316,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière droite',
+            title = _T('rear_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -326,7 +326,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Capot',
+            title = _T('hood'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -336,7 +336,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Coffre',
+            title = _T('trunk'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -346,7 +346,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Tout',
+            title = _T('all'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -366,11 +366,11 @@ lib.registerContext({
 
 lib.registerContext({
     id = 'fermerporte',
-    title = 'Fermeture les portes',
+    title = _T('door_close_menu'),
     menu = 'voituremenu',
     options = {
         {
-            title = 'Avant gauche',
+            title = _T('front_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -380,7 +380,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Avant droite',
+            title = _T('front_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -390,7 +390,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière gauche',
+            title = _T('rear_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -400,7 +400,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière droite',
+            title = _T('rear_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -410,7 +410,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Capot',
+            title = _T('hood'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -420,7 +420,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Coffre',
+            title = _T('trunk'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -430,7 +430,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Tout',
+            title = _T('all'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -449,11 +449,11 @@ lib.registerContext({
 
 lib.registerContext({
     id = 'changerplace',
-    title = 'Changer de place',
+    title = _T('change_seat'),
     menu = 'voituremenu',
     options = {
         {
-            title = 'Avant gauche',
+            title = _T('front_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -463,7 +463,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Avant droite',
+            title = _T('front_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -473,7 +473,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière gauche',
+            title = _T('rear_left'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)
@@ -483,7 +483,7 @@ lib.registerContext({
             end,
         },
         {
-            title = 'Arrière droite',
+            title = _T('rear_right'),
             icon = 'fa-solid fa-car',
             onSelect = function()
                 local playerPed = GetPlayerPed(-1)

@@ -13,10 +13,12 @@ function client.setPlayerData(key, value)
 	ESX.SetPlayerData(key, value)
 end
 
----@diagnostic disable-next-line: duplicate-set-field
-function client.setPlayerStatus(values)
-	for name, value in pairs(values) do
-		if value > 0 then TriggerEvent('esx_status:add', name, value) else TriggerEvent('esx_status:remove', name, -value) end
+if not lib.checkDependency('es_extended', '1.16.0') then
+	---@diagnostic disable-next-line: duplicate-set-field
+	function client.setPlayerStatus(values)
+		for name, value in pairs(values) do
+			if value > 0 then TriggerEvent('esx_status:add', name, value) else TriggerEvent('esx_status:remove', name, -value) end
+		end
 	end
 end
 
@@ -38,7 +40,7 @@ local Weapon = require 'modules.weapon.client'
 
 RegisterNetEvent('esx_policejob:handcuff', function()
 	PlayerData.cuffed = not PlayerData.cuffed
-	LocalPlayer.state:set('invBusy', PlayerData.cuffed, true)
+	client.player:setr('invBusy', PlayerData.cuffed)
 
 	if not PlayerData.cuffed then return end
 
@@ -47,5 +49,5 @@ end)
 
 RegisterNetEvent('esx_policejob:unrestrain', function()
 	PlayerData.cuffed = false
-	LocalPlayer.state:set('invBusy', PlayerData.cuffed, true)
+	client.player:setr('invBusy', false)
 end)

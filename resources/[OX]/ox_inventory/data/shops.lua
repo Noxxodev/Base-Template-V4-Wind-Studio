@@ -104,7 +104,7 @@ return {
 		}
 	},
 
-	--[[PoliceArmoury = {
+	PoliceArmoury = {
 		name = 'Police Armoury',
 		groups = shared.police,
 		blip = {
@@ -139,7 +139,7 @@ return {
 		}, targets = {
 
 		}
-	},]]
+	},
 
 	BlackMarketArms = {
 		name = 'Black Market (Arms)',
@@ -152,7 +152,7 @@ return {
 		}, locations = {
 			vec3(309.09, -913.75, 56.46)
 		}, targets = {
-			{ loc = vec3(309.09, -913.75, 56.46), length = 0.5, width = 3.0, heading = 270.0, minZ = 30.5, maxZ = 32.0, distance = 6 }
+
 		}
 	},
 

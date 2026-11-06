@@ -1,9 +1,10 @@
 local debug_getinfo = debug.getinfo
+local loadStatus = 'ox_lib has not yet loaded.'
 
 function noop() end
 
 lib = setmetatable({
-    name = 'ox_lib',
+    name = GetCurrentResourceName(),
     context = IsDuplicityVersion() and 'server' or 'client',
 }, {
     __newindex = function(self, key, fn)
@@ -37,6 +38,8 @@ lib = setmetatable({
     end
 })
 
+function lib.hasLoaded() return loadStatus end
+
 cache = {
     resource = lib.name,
     game = GetGameName(),
@@ -44,12 +47,12 @@ cache = {
 
 if not LoadResourceFile(lib.name, 'web/build/index.html') then
     local err =
-    '^1Unable to load UI. Build ox_lib or download the latest release.\n	^3https://github.com/communityox/ox_lib/releases/latest/download/ox_lib.zip^0'
-    function lib.hasLoaded() return err end
+    '^1Unable to load UI. Build ox_lib or download the latest release.\n	^3https://github.com/overextended/ox_lib/releases/latest/download/ox_lib.zip^0'
+    loadStatus = err
 
     error(err)
 end
 
-function lib.hasLoaded() return true end
+load(LoadResourceFile(lib.name, 'require.lua'), '@@ox_lib/require.lua')()
 
-require = lib.require
+loadStatus = true

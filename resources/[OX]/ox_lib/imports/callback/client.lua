@@ -78,9 +78,16 @@ local function triggerServerCallback(_, event, delay, cb, ...)
         end
     end
 
-    if promise then
-        SetTimeout(callbackTimeout, function() promise:reject(("callback event '%s' timed out"):format(key)) end)
+    SetTimeout(callbackTimeout, function()
+        if not pendingCallbacks[key] then return end
 
+        local err = ("callback event '%s' timed out"):format(key)
+        pendingCallbacks[key] = nil
+
+        if promise then promise:reject(err) else error(err, 2) end
+    end)
+
+    if promise then
         return table.unpack(Citizen.Await(promise))
     end
 end
@@ -133,7 +140,7 @@ local pcall = pcall
 ---Registers an event handler and callback function to respond to server requests.
 ---@diagnostic disable-next-line: duplicate-set-field
 function lib.callback.register(name, cb)
-    event = cbEvent:format(name)
+    local event = cbEvent:format(name)
 
     lib.setValidCallback(name, true)
 

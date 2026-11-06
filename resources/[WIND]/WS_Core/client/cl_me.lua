@@ -3,7 +3,7 @@
 -- @version 3.0
 
 local c = Config -- Pre-load the config
-local lang = Languages[Config.language] -- Pre-load the language
+local lang = Languages[Config.language] or Languages['en'] -- Pre-load the language
 local peds = {}
 
 -- Localization

@@ -164,15 +164,15 @@ Citizen.CreateThread(function()
     local name = GetPlayerName(PlayerId())
     local id = GetPlayerServerId(PlayerId())
     
-    AddTextEntry('FE_THDR_GTAO', 'Base Template V4 - ~b~Wind Studio~s~ | ID : ' .. id .. ' | Nom : ' .. name )
-    AddTextEntry('PM_PANE_LEAVE', 'Se déconnecter et retourner à l\'accueil 🐌')
-    AddTextEntry('PM_PANE_QUIT', 'Quitter FiveM 🐌')
+    AddTextEntry('FE_THDR_GTAO', _T('pause_header', id, name))
+    AddTextEntry('PM_PANE_LEAVE', _T('pause_leave'))
+    AddTextEntry('PM_PANE_QUIT', _T('pause_quit'))
     AddTextEntry('PM_SCR_MAP', '🗺️')
     AddTextEntry('PM_SCR_GAM', '🐌')
     AddTextEntry('PM_SCR_INF', '📝')
     AddTextEntry('PM_SCR_SET', '⚙️')
     AddTextEntry('PM_SCR_STA', '📊')
-    AddTextEntry('PM_SCR_RPL', 'Éditeur ∑')
+    AddTextEntry('PM_SCR_RPL', _T('pause_editor'))
     AddTextEntry('PM_SCR_GAL', '📷')
 end)
 
@@ -213,8 +213,8 @@ end)
 
 RegisterCommand('id', function()
     lib.notify({
-        title = 'Votre ID est le ' .. GetPlayerServerId(PlayerId()),
-        description = 'Notification',
+        title = _T('your_id', GetPlayerServerId(PlayerId())),
+        description = _T('notification'),
         position = 'top',
         duration = 5000,
         style = {

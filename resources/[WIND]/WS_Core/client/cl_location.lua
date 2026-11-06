@@ -63,7 +63,7 @@ AddEventHandler('WS_Location:openlocation', function(data)
 
     lib.registerContext({
         id = 'location',
-        title = 'Location de voiture',
+        title = _T('rental_menu'),
         options = options
     })
 
@@ -92,12 +92,12 @@ function spawncar(car, price, ID)
                     DeleteVehicle(vehicle)
                     lib.hideTextUI()
                     if Config.notif == 1 then
-                        ESX.ShowNotification('Le temps de location est fini.')
+                        ESX.ShowNotification(_T('rental_over'))
                     end
                     if Config.notif == 2 then
                         lib.notify({
-                            title = 'Location',
-                            description = "Le temps de location est fini.",
+                            title = _T('rental_title'),
+                            description = _T('rental_over'),
                             type = 'inform',
                             duration = 10000,
                         })
@@ -118,19 +118,19 @@ function spawncar(car, price, ID)
                         tempsRestant = tempsRestant .. minutes .. "min "
                     end
                     tempsRestant = tempsRestant .. secondesRestantes .. "s"
-                    lib.showTextUI("Temps restant : " .. tempsRestant)
+                    lib.showTextUI(_T('rental_time_left', tempsRestant))
                     Wait(1)
                 end
             end
         end 
     else
         if Config.notif == 1 then
-            ESX.ShowNotification("Vous n'avez pas assez d'argent.")
+            ESX.ShowNotification(_T('not_enough_money'))
         end
         if Config.notif == 2 then
             lib.notify({
-                title = 'Location',
-                description = "Vous n'avez pas assez d'argent.",
+                title = _T('rental_title'),
+                description = _T('not_enough_money'),
                 type = 'inform',
                 duration = 10000,
             })

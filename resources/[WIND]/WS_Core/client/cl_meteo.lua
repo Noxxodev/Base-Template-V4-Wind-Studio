@@ -74,20 +74,20 @@ end)
 
 -- Ajout des suggestions de commandes dans le chat
 Citizen.CreateThread(function()
-    TriggerEvent('chat:addSuggestion', '/weather', 'Changer la météo.', {
-        { name = "typeDeMeteo", help = "Types disponibles : extrasunny, clear, neutral, smog, foggy, overcast, clouds, clearing, rain, thunder, snow, blizzard, snowlight, xmas & halloween" }
+    TriggerEvent('chat:addSuggestion', '/weather', _T('sugg_weather'), {
+        { name = _T('sugg_weather_param'), help = _T('sugg_weather_help') .. "extrasunny, clear, neutral, smog, foggy, overcast, clouds, clearing, rain, thunder, snow, blizzard, snowlight, xmas & halloween" }
     })
-    TriggerEvent('chat:addSuggestion', '/time', 'Définir l\'heure.', {
-        { name = "heures", help = "Nombre entre 0 et 23" },
-        { name = "minutes", help = "Nombre entre 0 et 59" }
+    TriggerEvent('chat:addSuggestion', '/time', _T('sugg_time'), {
+        { name = _T('sugg_hours'), help = _T('sugg_hours_help') },
+        { name = _T('sugg_minutes'), help = _T('sugg_minutes_help') }
     })
-    TriggerEvent('chat:addSuggestion', '/freezetime', 'Geler ou dégeler le temps.')
-    TriggerEvent('chat:addSuggestion', '/freezeweather', 'Activer/désactiver les changements météo dynamiques.')
-    TriggerEvent('chat:addSuggestion', '/morning', 'Met l\'heure à 09:00.')
-    TriggerEvent('chat:addSuggestion', '/noon', 'Met l\'heure à 12:00.')
-    TriggerEvent('chat:addSuggestion', '/evening', 'Met l\'heure à 18:00.')
-    TriggerEvent('chat:addSuggestion', '/night', 'Met l\'heure à 23:00.')
-    TriggerEvent('chat:addSuggestion', '/blackout', 'Activer/désactiver le mode coupure de courant.')
+    TriggerEvent('chat:addSuggestion', '/freezetime', _T('sugg_freezetime'))
+    TriggerEvent('chat:addSuggestion', '/freezeweather', _T('sugg_freezeweather'))
+    TriggerEvent('chat:addSuggestion', '/morning', _T('sugg_morning'))
+    TriggerEvent('chat:addSuggestion', '/noon', _T('sugg_noon'))
+    TriggerEvent('chat:addSuggestion', '/evening', _T('sugg_evening'))
+    TriggerEvent('chat:addSuggestion', '/night', _T('sugg_night'))
+    TriggerEvent('chat:addSuggestion', '/blackout', _T('sugg_blackout'))
 end)
 
 

@@ -1,5 +1,5 @@
 return {
-	--[[{
+	{
 		coords = vec3(458.97, -982.79, 30.68),
 		target = { -- qtarget support
 			name = 'mrpd_evidence', -- name of zone must be uniuqe
@@ -10,5 +10,5 @@ return {
 			minZ = 29.09,
 			maxZ = 31.89
 		}
-	}]]
+	}
 }
