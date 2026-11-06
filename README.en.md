@@ -1,4 +1,4 @@
-# Base Template V4 — Wind Studio (FR)
+# Base Template V4 - Wind Studio
 
 <p align="center">
   <a href="README.md"><img src="https://img.shields.io/badge/Langue-Français-blue?style=for-the-badge" alt="Français"></a>
@@ -146,5 +146,5 @@ Then give yourself the group in the database (`group` column of the `users` tabl
 
 ## 🙏 Credits
 
-- Developed by **Noxxo** — [Wind Studio](https://discord.gg/7SBn6ygS87)
+- Developed by **Noxxo** for [Wind Studio](https://discord.gg/7SBn6ygS87)
 - [ESX Framework](https://github.com/esx-framework), [Overextended](https://github.com/overextended), [illenium-appearance](https://github.com/iLLeniumStudios/illenium-appearance) and their respective contributors

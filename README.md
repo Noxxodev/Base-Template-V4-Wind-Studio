@@ -1,4 +1,4 @@
-# Base Template V4 - Wind Studio (FR)
+# Base Template V4 - Wind Studio
 
 <p align="center">
   <a href="README.md"><img src="https://img.shields.io/badge/Langue-Français-blue?style=for-the-badge" alt="Français"></a>
@@ -146,5 +146,5 @@ Ne publie **jamais** ta vraie `sv_licenseKey`, ta clé Steam ou ton mot de passe
 
 ## 🙏 Crédits
 
-- Développé par **Noxxo** — [Wind Studio](https://discord.gg/7SBn6ygS87)
+- Développé par **Noxxo** pour [Wind Studio](https://discord.gg/7SBn6ygS87)
 - [ESX Framework](https://github.com/esx-framework), [Overextended](https://github.com/overextended), [illenium-appearance](https://github.com/iLLeniumStudios/illenium-appearance) et leurs contributeurs respectifs
